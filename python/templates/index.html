@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+    <title>NASA Active Directory API</title>
+</head>
+<body>
+    <div class="container" style="margin-top: 1.5rem;">
+        <p class="title">NASA Active Directory API</p>
+        <p class="subtitle">
+            <!-- API for NASA Active Directory Lookups.
+            <br> -->
+            This page is info/examples for all functions of the API.
+            <br>
+            <span class="subtitle is-6">♥ inspired by ADTools.dll and lpm_ad_test</span>
+        </p>
+        <p style="margin-bottom: .5rem;" class="is-size-5">API endpoints:</p>
+        <section style="margin-bottom: 1rem;" id="validuser">
+            <p ><u>Valid User:</u></p>
+            <p>Checks to see if the specified user exists.</p>
+            <p>Returns: <code>True</code> or <code>False</code></p>
+            <p>Example: <a href="/ad_api/validuser/{{ data.user.sAMAccountName }}">/validuser/{{ data.user.sAMAccountName }}</a></p>
+            <pre>/validuser/:auid</pre>
+        </section>
+        <section style="margin-bottom: 1rem;" id="userinfo">
+            <p><u>User Info:</u></p>
+            <p>Looks up a user by their auid.</p>
+            <p>Returns: <code>JSON object</code></p>
+            <p>Example: <a href="/ad_api/userinfo/{{ data.user.sAMAccountName }}">/userinfo/{{ data.user.sAMAccountName }}</a></p>
+            <pre>/userinfo/:auid</pre>
+        </section>
+        <section style="margin-bottom: 1rem;" id="usergroups">
+            <p ><u>User Groups:</u></p>
+            <p>For the specified auid, retrieves all of the groups that the user belongs to.</p>
+            <p>Returns: <code>JSON array</code></p>
+            <p>Example: <a href="/ad_api/usergroups/{{ data.user.sAMAccountName }}">/usergroups/{{ data.user.sAMAccountName }}</a></p>
+            <pre>/usergroups/:auid</pre>
+        </section>
+        <section style="margin-bottom: 1.5rem;" id="all">
+            <p ><u>All Info:</u></p>
+            <p>Returns the combined data of the validuser, userinfo, and usergroups endpoints.</p>
+            <p>Example: <a href="/ad_api/all/{{ data.user.sAMAccountName }}">/all/{{ data.user.sAMAccountName }}</a></p>
+            <pre>/all/:auid</pre>
+        </section>
+        <section style="margin-bottom: 1.5rem;">
+            <p style="margin-bottom: .5rem;" class="is-size-5">Your Info/Function Results:</p>
+            <p>Valid User:</p>
+            <pre style="margin-bottom: .5rem;">{{ valid }}</pre>
+            <p>User Info:</p>
+            <pre style="margin-bottom: .5rem;">{{ user }}</pre>
+            <p>Groups:</p>
+            <pre style="margin-bottom: .5rem;">{{ groups }}</pre>
+        </section>
+    </div>
+</body>
+</html>

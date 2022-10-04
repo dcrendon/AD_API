@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+    <title>Node ADLookup API</title>
+</head>
+<body>
+    <div class="container" style="margin-top: 1.5rem;">
+        <p class="title">Node ADLookup API</p>
+        <p class="subtitle">
+            The API makes AD lookup functions avalible to other applications via the web.
+            <br>
+            This page is an example of the data returned from the API.
+            <br>
+            <span class="subtitle is-6">♥ inspired by ADTools.dll and lpm_ad_test</span>
+        </p>
+        <p style="margin-bottom: .5rem;" class="is-size-5">API endpoints:</p>
+        <section style="margin-bottom: 1rem;" id="validuser">
+            <p ><u>Valid User:</u></p>
+            <p>Checks to see if the specified user exists.</p>
+            <p>Example: <a href="/validuser/<%= it.user.sAMAccountName %>">/validuser/dcrendon</a></p>
+            <pre>/validuser/:auid</pre>
+        </section>
+        <section style="margin-bottom: 1rem;" id="userinfo">
+            <p><u>User Info:</u></p>
+            <p>Looks up a user by their auid.</p>
+            <p>Example: <a href="/userinfo/<%= it.user.sAMAccountName %>">/userinfo/dcrendon</a></p>
+            <pre>/userinfo/:auid</pre>
+        </section>
+        <section style="margin-bottom: 1rem;" id="usergroups">
+            <p ><u>User Groups:</u></p>
+            <p>For the specified auid, retrieves all of the groups that the user belongs to.</p>
+            <p>Example: <a href="/usergroups/<%= it.user.sAMAccountName %>">/usergroups/dcrendon</a></p>
+            <pre>/usergroups/:auid</pre>
+        </section>
+        <section style="margin-bottom: 1.5rem;" id="all">
+            <p ><u>All Info:</u></p>
+            <p>Returns the combined data of the validuser, userinfo, and usergroups endpoints.</p>
+            <p>Example: <a href="/all/<%= it.user.sAMAccountName %>">/all/dcrendon</a></p>
+            <pre>/all/:auid</pre>
+        </section>
+        <section style="margin-bottom: 1.5rem;">
+            <p style="margin-bottom: .5rem;" class="is-size-5">Your Info/Function Results:</p>
+            <p>isValidUser:</p>
+            <pre style="margin-bottom: .5rem;"><%= it.isValidUser %></pre>
+            <p>User Info:</p>
+            <pre style="margin-bottom: .5rem;"><%= JSON.stringify(it.user, null, 4) %></pre>
+            <p>Groups:</p>
+            <pre style="margin-bottom: .5rem;"><%= JSON.stringify(it.groups, null, 4) %></pre>
+        </section>
+    </div>
+</body>
+</html>
